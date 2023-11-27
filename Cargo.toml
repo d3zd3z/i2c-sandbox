@@ -1,0 +1,36 @@
+[package]
+name = "i2c-sandbox"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.rtic]
+version = "2.0.1"
+features = ["thumbv6-backend"]
+
+[dependencies.rtic-monotonics]
+version = "1.0.0"
+features = ["rp2040"]
+
+[dependencies]
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+embedded-hal = { version = "0.2.5", features = ["unproven"] }
+
+defmt = "0.3"
+defmt-rtt = "0.4"
+# defmt-serial = "0.6"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+adafruit-feather-rp2040 = "0.7"
+fugit = { version = "0.3.7", features = ["defmt"] }
+rp2040-hal = { version = "0.9", features = ["defmt"] }
+
+[features]
+controller = []
+target = []
+default = ["controller"]
+
+[patch.crates-io]
+rp2040-hal = { path = "../rp-hal/rp2040-hal" }
